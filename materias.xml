@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<materias>
+
+    <!-- Materias del primer semestre -->
+
+    <materia semestre="1">taller de habilidades para el aprendizaje</materia>
+    <materia semestre="1">introduccion a las matematicas</materia>
+    <materia semestre="1">comprension de la ciencia</materia>
+    <materia semestre="1">fisica i</materia>
+    <materia semestre="1">perspectiva de genero</materia>
+    <materia semestre="1">apreciacion del arte</materia>
+    <materia semestre="1">sexualidad humana</materia>
+    <materia semestre="1">educacion para la salud</materia>
+    <materia semestre="1">introduccion a la lengua extranjera</materia>
+    <materia semestre="1">lengua extranjera i</materia>
+    <materia semestre="1">tae: frances junior</materia>
+    <materia semestre="1">tecnologias de la informacion</materia>
+    <materia semestre="1">descripcion y comunicacion</materia>
+    <materia semestre="1">tutoria</materia>
+    <materia semestre="1">extra muro</materia>
+    <materia semestre="1">academia</materia>
+
+    <!-- Materias del segundo semestre -->
+
+    <materia semestre="2">comprension y exposicion</materia>
+    <materia semestre="2">matematicas y vida cotidiana ii</materia>
+    <materia semestre="2">acercamiento al desarrollo deportivo</materia>
+    <materia semestre="2">autoconocimiento y personalidad</materia>
+    <materia semestre="2">quimica i</materia>
+    <materia semestre="2">taller de comunicacion</materia>
+    <materia semestre="2">lengua extranjera ii</materia>
+    <materia semestre="2">tecnologias de la informacion ii</materia>
+    <materia semestre="2">fisica ii</materia>
+    <materia semestre="2">recursamiento</materia>
+    <materia semestre="2">tutoria</materia>
+    <materia semestre="2">extra muro</materia>
+
+    <!-- Materias del tercer semestre -->
+
+    <materia semestre="3">lengua extranjera iii</materia>
+    <materia semestre="3">tae: diagnostico de la problematica ambiental</materia>
+    <materia semestre="3">recreacion y aprovechamiento del tiemplo libre</materia>
+    <materia semestre="3">quimica ii</materia>
+    <materia semestre="3">raices culturales</materia>
+    <materia semestre="3">analisis y argumento</materia>
+    <materia semestre="3">tae: principios basicos de la salud publica</materia>
+    <materia semestre="3">taller de lectura y redaccion</materia>
+    <materia semestre="3">tae: frances inicial</materia>
+    <materia semestre="3">matematicas y ciencia i</materia>
+    <materia semestre="3">recursamiento</materia>
+    <materia semestre="3">tutoria</materia>
+    <materia semestre="3">extra muro</materia>
+    <materia semestre="3">academia</materia>
+
+    <!-- Materias del cuarto semestre -->
+
+    <materia semestre="4">matematicas y ciencia ii</materia>
+    <materia semestre="4">democracia y soberania nacional</materia>
+    <materia semestre="4">actividad fisica y desarrollo personal</materia>
+    <materia semestre="4">biologia i</materia>
+    <materia semestre="4">formacion ciudadana</materia>
+    <materia semestre="4">critica y propuesta</materia>
+    <materia semestre="4">tae: salud biopsicosocial</materia>
+    <materia semestre="4">lengua extranjera iv</materia>
+    <materia semestre="4">recursamiento</materia>
+    <materia semestre="4">tutoria</materia>
+    <materia semestre="4">extra muro</materia>
+    <materia semestre="4">academia</materia>
+
+    <!-- Materias del quinto semestre -->
+
+    <materia semestre="5">lengua extranjera v</materia>
+    <materia semestre="5">tae: gestion y ejecucion de proyectos de educacion ambiental</materia>
+    <materia semestre="5">estilo y correccion</materia>
+    <materia semestre="5">identidad y filosofia de vida</materia>
+    <materia semestre="5">tae: imaginacion digital</materia>
+    <materia semestre="5">precalculo</materia>
+    <materia semestre="5">tae: identificacion y prevencion de riesgos para la salud</materia>
+    <materia semestre="5">biologia ii</materia>
+    <materia semestre="5">diseño de plan de vida</materia>
+    <materia semestre="5">medios audiovisuales</materia>
+    <materia semestre="5">ciudanania mundial</materia>
+    <materia semestre="5">recursamiento</materia>
+    <materia semestre="5">tutoria</materia>
+    <materia semestre="5">extra muro</materia>
+    <materia semestre="5">academia</materia>
+
+    <!-- Materias del sexto semestre -->
+
+    <materia semestre="6">habilidad verbal</materia>
+    <materia semestre="6">lengua extranjera vi</materia>
+    <materia semestre="6">geografia y cuidado del entorno</materia>
+    <materia semestre="6">analisis economico</materia>
+    <materia semestre="6">introduccion a la educacion universitaria</materia>
+    <materia semestre="6">reflexion etica</materia>
+    <materia semestre="6">tae: gestion del bienestar y cuidado de la salud</materia>
+    <materia semestre="6">matematica avanzada</materia>
+    <materia semestre="6">recursamiento</materia>
+    <materia semestre="6">tutoria</materia>
+    <materia semestre="6">extra muro</materia>
+    <materia semestre="6">academia</materia>
+</materias>
