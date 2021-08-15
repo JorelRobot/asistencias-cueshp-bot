@@ -210,4 +210,8 @@ public class FormValuesDAO {
             dataBase.commitChanges(document);
         }
     }
+    
+    public void checkXMLDataBase() {
+        dataBase.createXMLDBFileIfNotExists();
+    }
 }
