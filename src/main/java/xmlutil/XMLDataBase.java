@@ -110,6 +110,14 @@ public class XMLDataBase {
         }
         return true;
     }
+    
+    public void createXMLDBFileIfNotExists(){
+        File xmldbfile = new File(filePath);
+        
+        if (!xmldbfile.exists()) {
+            createXMLDBFile();
+        }
+    }
 
     public Document getDocument() {
         return document;
