@@ -124,4 +124,37 @@ public class FormValuesDAO {
 
         return values;
     }
+    
+    public void createFormValuesTemplate(String nombreMateria, String semestreMateria) {
+        
+        if (dataBase.openXMLDBFile()) {
+            Document document = dataBase.getDocument();
+            
+            Element materia = document.createElement("materia");
+            materia.setAttribute("id", nombreMateria);
+            materia.setAttribute("semestre", semestreMateria);
+            
+            Element videoconferencia = document.createElement("videoconferencia");
+            materia.appendChild(videoconferencia);
+            
+            Element actividad = document.createElement("actividad");
+            materia.appendChild(actividad);
+            
+            Element recurso = document.createElement("recurso");
+            materia.appendChild(recurso);
+            
+            Element retroalimentacion = document.createElement("retroalimentacion");
+            materia.appendChild(retroalimentacion);
+            
+            Element evaluacion = document.createElement("evaluacion");
+            materia.appendChild(evaluacion);
+            
+            Element otraActividad = document.createElement("otra-actividad");
+            materia.appendChild(otraActividad);
+            
+            document.getDocumentElement().appendChild(materia);
+            
+            dataBase.commitChanges(document);
+        }
+    }
 }
