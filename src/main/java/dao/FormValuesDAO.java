@@ -157,4 +157,17 @@ public class FormValuesDAO {
             dataBase.commitChanges(document);
         }
     }
+    
+    public void deleteFormValuesByNombre(String nombreMateria) {
+       
+        if (dataBase.openXMLDBFile()) {
+            Document document = dataBase.getDocument();
+            
+            Element query = document.getElementById(nombreMateria);
+                        
+            if (query != null){
+                document.removeChild(query);
+            }
+        }
+    }
 }
