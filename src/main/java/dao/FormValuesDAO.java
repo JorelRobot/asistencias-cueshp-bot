@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.FormValues;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import xmlutil.XMLDataBase;
@@ -38,43 +39,89 @@ public class FormValuesDAO {
             if (query.getLength() > 0) {
 
                 for (int i = 0; i < query.getLength(); i++) {
-                    FormValues value = new FormValues();
+                    FormValues values = new FormValues();
                     Node item = query.item(i);
                     NodeList childNodes = item.getChildNodes();
 
-                    value.setMateria(item.getAttributes().getNamedItem("materia").getTextContent());
-                    value.setSemestre(Integer.parseInt(item.getAttributes().getNamedItem("semestre").getTextContent()));
+                    //value.setMateria(item.getAttributes().getNamedItem("nombre").getTextContent());
+                    values.setMateria(item.getAttributes().getNamedItem("id").getTextContent());
+                    values.setSemestre(Integer.parseInt(item.getAttributes().getNamedItem("semestre").getTextContent()));
 
                     for (int j = 0; j < childNodes.getLength(); j++) {
                         Node childNode = childNodes.item(j);
 
-                        switch (item.getNodeName()) {
+                        switch (childNode.getNodeName()) {
                             case "videoconferencia":
-                                value.setVideoconferencia(item.getTextContent());
+                                values.setVideoconferencia(childNode.getTextContent());
                                 break;
                             case "actividad":
-                                value.setActividad(item.getTextContent());
+                                values.setActividad(childNode.getTextContent());
                                 break;
                             case "recurso":
-                                value.setRecurso(item.getTextContent());
+                                values.setRecurso(childNode.getTextContent());
                                 break;
                             case "retroalimentacion":
-                                value.setRetroalimentacion(item.getTextContent());
+                                values.setRetroalimentacion(childNode.getTextContent());
                                 break;
                             case "evaluacion":
-                                value.setEvaluacion(item.getTextContent());
+                                values.setEvaluacion(childNode.getTextContent());
                                 break;
                             case "otra-actividad":
-                                value.setOtra_actividad(item.getTextContent());
+                                values.setOtra_actividad(childNode.getTextContent());
                                 break;
                         }
                     }
-                    
-                    materias.add(value);
+
+                    materias.add(values);
                 }
             }
         }
 
         return materias;
+    }
+
+    public FormValues getFormValuesByNombreMateria(String nombre) {
+        FormValues values = null;
+
+        if (dataBase.openXMLDBFile()) {
+            Document document = dataBase.getDocument();
+            Element query = document.getElementById(nombre);
+
+            if (query != null) {
+                values = new FormValues();
+                NodeList childNodes = query.getChildNodes();
+
+                //values.setMateria(query.getAttribute("nombre"));
+                values.setMateria(query.getAttribute("id"));
+                values.setSemestre(Integer.parseInt(query.getAttribute("semestre")));
+
+                for (int j = 0; j < childNodes.getLength(); j++) {
+                    Node childNode = childNodes.item(j);
+
+                    switch (childNode.getNodeName()) {
+                        case "videoconferencia":
+                            values.setVideoconferencia(childNode.getTextContent());
+                            break;
+                        case "actividad":
+                            values.setActividad(childNode.getTextContent());
+                            break;
+                        case "recurso":
+                            values.setRecurso(childNode.getTextContent());
+                            break;
+                        case "retroalimentacion":
+                            values.setRetroalimentacion(childNode.getTextContent());
+                            break;
+                        case "evaluacion":
+                            values.setEvaluacion(childNode.getTextContent());
+                            break;
+                        case "otra-actividad":
+                            values.setOtra_actividad(childNode.getTextContent());
+                            break;
+                    }
+                }
+            }
+        }
+
+        return values;
     }
 }
