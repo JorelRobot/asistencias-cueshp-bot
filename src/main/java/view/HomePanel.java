@@ -5,7 +5,12 @@
  */
 package view;
 
+import dao.FormValuesDAO;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import model.FormValues;
+import xmlutil.XMLDataBase;
 
 /**
  *
@@ -13,11 +18,36 @@ import javax.swing.JFrame;
  */
 public class HomePanel extends javax.swing.JPanel {
 
+    private FormValuesDAO formValuesDAO;
+
     /**
      * Creates new form HomePanel
      */
     public HomePanel() {
         initComponents();
+
+        formValuesDAO = new FormValuesDAO();
+        formValuesDAO.checkXMLDataBase();
+        setUp();
+    }
+
+    private void setUp(){
+        setMateriasListUp();
+    }
+    
+    private void setMateriasListUp() {
+        List<FormValues> formValuesList = formValuesDAO.getAllMaterias();
+
+        if (formValuesList != null) {
+
+            DefaultListModel modeloLista = new DefaultListModel();
+
+            for (FormValues fv : formValuesList) {
+                modeloLista.addElement(fv);
+            }
+
+            materiasRegistradasList.setModel(modeloLista);
+        }
     }
 
     /**
@@ -33,7 +63,7 @@ public class HomePanel extends javax.swing.JPanel {
         retroalimentacioButtonGroup = new javax.swing.ButtonGroup();
         evaluacionButtonGroup = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
-        materias_registradas_list = new javax.swing.JList<>();
+        materiasRegistradasList = new javax.swing.JList<>();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -70,13 +100,8 @@ public class HomePanel extends javax.swing.JPanel {
         entradaButton = new javax.swing.JButton();
         guardarButton = new javax.swing.JButton();
 
-        materias_registradas_list.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        materias_registradas_list.setSelectionBackground(new java.awt.Color(124, 172, 92));
-        jScrollPane1.setViewportView(materias_registradas_list);
+        materiasRegistradasList.setSelectionBackground(new java.awt.Color(124, 172, 92));
+        jScrollPane1.setViewportView(materiasRegistradasList);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -389,7 +414,7 @@ public class HomePanel extends javax.swing.JPanel {
                         .addComponent(eliminarMateriaButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(guardarButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -418,7 +443,7 @@ public class HomePanel extends javax.swing.JPanel {
 
     private void agregarMateriaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarMateriaButtonActionPerformed
         SelectorMateriaDialog nuevaMateria = new SelectorMateriaDialog(null, true);
-        
+
         nuevaMateria.setLocationRelativeTo(null);
         nuevaMateria.setVisible(true);
     }//GEN-LAST:event_agregarMateriaButtonActionPerformed
@@ -433,7 +458,7 @@ public class HomePanel extends javax.swing.JPanel {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Bot de Asistencias TEST");
-        
+
         frame.setContentPane(new HomePanel());
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -470,7 +495,7 @@ public class HomePanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JList<String> materias_registradas_list;
+    private javax.swing.JList<String> materiasRegistradasList;
     private javax.swing.JTextField meetLinkField;
     private javax.swing.JRadioButton meetRadioButton;
     private javax.swing.JRadioButton moodleRadioButton;

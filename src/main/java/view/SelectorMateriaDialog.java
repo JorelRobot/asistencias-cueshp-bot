@@ -5,9 +5,11 @@
  */
 package view;
 
+import dao.FormValuesDAO;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
+import javax.swing.JOptionPane;
 import model.Materia;
 import xmlutil.LectorMateriasXML;
 
@@ -16,13 +18,16 @@ import xmlutil.LectorMateriasXML;
  * @author Joel
  */
 public class SelectorMateriaDialog extends javax.swing.JDialog {
-
+    
+    private FormValuesDAO formValuesDAO;
+    
     /**
      * Creates new form NuevaMateria
      */
     public SelectorMateriaDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        formValuesDAO = new FormValuesDAO();        
         
         setCombosUp();
     }
@@ -64,10 +69,11 @@ public class SelectorMateriaDialog extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         semestreComboBox = new javax.swing.JComboBox<>();
         materiasComboBox = new javax.swing.JComboBox<>();
-        entradaButton = new javax.swing.JButton();
+        agregarButton = new javax.swing.JButton();
         entradaButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Agregar materia");
@@ -83,11 +89,16 @@ public class SelectorMateriaDialog extends javax.swing.JDialog {
 
         materiasComboBox.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        entradaButton.setBackground(new java.awt.Color(124, 172, 92));
-        entradaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        entradaButton.setForeground(new java.awt.Color(255, 255, 255));
-        entradaButton.setText("Agregar");
-        entradaButton.setBorderPainted(false);
+        agregarButton.setBackground(new java.awt.Color(124, 172, 92));
+        agregarButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        agregarButton.setForeground(new java.awt.Color(255, 255, 255));
+        agregarButton.setText("Agregar");
+        agregarButton.setBorderPainted(false);
+        agregarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarButtonActionPerformed(evt);
+            }
+        });
 
         entradaButton1.setBackground(new java.awt.Color(255, 255, 255));
         entradaButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -112,7 +123,7 @@ public class SelectorMateriaDialog extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(entradaButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(entradaButton)))
+                        .addComponent(agregarButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -130,13 +141,27 @@ public class SelectorMateriaDialog extends javax.swing.JDialog {
                 .addComponent(materiasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(entradaButton)
+                    .addComponent(agregarButton)
                     .addComponent(entradaButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void agregarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarButtonActionPerformed
+        String semestre = String.valueOf(semestreComboBox.getSelectedItem());
+        String materia = String.valueOf(materiasComboBox.getSelectedItem());
+        
+        if (!formValuesDAO.existsMateria(materia)) {
+            formValuesDAO.createFormValuesTemplate(materia, semestre);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "La materia seleccionada ya esta registrada");
+        }
+        
+        
+    }//GEN-LAST:event_agregarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +207,7 @@ public class SelectorMateriaDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton entradaButton;
+    private javax.swing.JButton agregarButton;
     private javax.swing.JButton entradaButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

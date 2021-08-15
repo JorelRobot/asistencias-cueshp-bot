@@ -86,4 +86,9 @@ public class FormValues {
     public void setOtra_actividad(String otra_actividad) {
         this.otra_actividad = otra_actividad;
     }
+
+    @Override
+    public String toString() {
+        return materia;
+    }
 }

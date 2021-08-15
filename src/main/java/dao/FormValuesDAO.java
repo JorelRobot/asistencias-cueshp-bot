@@ -132,6 +132,7 @@ public class FormValuesDAO {
             Document document = dataBase.getDocument();
 
             Element materia = document.createElement("materia");
+            //materia.setIdAttribute("id", true);
             materia.setAttribute("id", nombreMateria);
             materia.setAttribute("semestre", semestreMateria);
 
@@ -205,10 +206,25 @@ public class FormValuesDAO {
                         text = document.createTextNode(values.getOtra_actividad());
                         break;
                 }
+                
                 childNode.appendChild(text);
             }
             dataBase.commitChanges(document);
         }
+    }
+    
+    public boolean existsMateria(String nombreMateria) {
+        if (dataBase.openXMLDBFile()) {
+            Document document = dataBase.getDocument();
+            
+            Element materia = document.getElementById(nombreMateria);
+            
+            if (materia != null){
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     public void checkXMLDataBase() {
