@@ -12,6 +12,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
 import xmlutil.XMLDataBase;
 
 /**
@@ -124,50 +125,89 @@ public class FormValuesDAO {
 
         return values;
     }
-    
+
     public void createFormValuesTemplate(String nombreMateria, String semestreMateria) {
-        
+
         if (dataBase.openXMLDBFile()) {
             Document document = dataBase.getDocument();
-            
+
             Element materia = document.createElement("materia");
             materia.setAttribute("id", nombreMateria);
             materia.setAttribute("semestre", semestreMateria);
-            
+
             Element videoconferencia = document.createElement("videoconferencia");
             materia.appendChild(videoconferencia);
-            
+
             Element actividad = document.createElement("actividad");
             materia.appendChild(actividad);
-            
+
             Element recurso = document.createElement("recurso");
             materia.appendChild(recurso);
-            
+
             Element retroalimentacion = document.createElement("retroalimentacion");
             materia.appendChild(retroalimentacion);
-            
+
             Element evaluacion = document.createElement("evaluacion");
             materia.appendChild(evaluacion);
-            
+
             Element otraActividad = document.createElement("otra-actividad");
             materia.appendChild(otraActividad);
-            
+
             document.getDocumentElement().appendChild(materia);
-            
+
             dataBase.commitChanges(document);
         }
     }
-    
+
     public void deleteFormValuesByNombre(String nombreMateria) {
-       
+
         if (dataBase.openXMLDBFile()) {
             Document document = dataBase.getDocument();
-            
+
             Element query = document.getElementById(nombreMateria);
-                        
-            if (query != null){
+
+            if (query != null) {
                 document.removeChild(query);
+                dataBase.commitChanges(document);
             }
+        }
+    }
+
+    public void editFormValues(FormValues values) {
+        if (dataBase.openXMLDBFile()) {
+            Document document = dataBase.getDocument();
+
+            Element materia = document.getElementById(values.getMateria());
+
+            NodeList childNodes = materia.getChildNodes();
+
+            for (int j = 0; j < childNodes.getLength(); j++) {
+                Node childNode = childNodes.item(j);
+                Text text = null;
+                
+                switch (childNode.getNodeName()) {
+                    case "videoconferencia":
+                        text = document.createTextNode(values.getVideoconferencia());
+                        break;
+                    case "actividad":
+                        text = document.createTextNode(values.getActividad());
+                        break;
+                    case "recurso":
+                        text = document.createTextNode(values.getRecurso());
+                        break;
+                    case "retroalimentacion":
+                        text = document.createTextNode(values.getRetroalimentacion());
+                        break;
+                    case "evaluacion":
+                        text = document.createTextNode(values.getEvaluacion());
+                        break;
+                    case "otra-actividad":
+                        text = document.createTextNode(values.getOtra_actividad());
+                        break;
+                }
+                childNode.appendChild(text);
+            }
+            dataBase.commitChanges(document);
         }
     }
 }
