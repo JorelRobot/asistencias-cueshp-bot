@@ -20,6 +20,7 @@ import xmlutil.LectorMateriasXML;
 public class SelectorMateriaDialog extends javax.swing.JDialog {
     
     private FormValuesDAO formValuesDAO;
+    private HomePanel homePanel;
     
     /**
      * Creates new form NuevaMateria
@@ -70,7 +71,7 @@ public class SelectorMateriaDialog extends javax.swing.JDialog {
         semestreComboBox = new javax.swing.JComboBox<>();
         materiasComboBox = new javax.swing.JComboBox<>();
         agregarButton = new javax.swing.JButton();
-        entradaButton1 = new javax.swing.JButton();
+        cancelarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -100,9 +101,17 @@ public class SelectorMateriaDialog extends javax.swing.JDialog {
             }
         });
 
-        entradaButton1.setBackground(new java.awt.Color(255, 255, 255));
-        entradaButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        entradaButton1.setText("Cancelar");
+        cancelarButton.setBackground(new java.awt.Color(209, 74, 68));
+        cancelarButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cancelarButton.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarButton.setText("Cancelar");
+        cancelarButton.setToolTipText("");
+        cancelarButton.setBorderPainted(false);
+        cancelarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,7 +130,7 @@ public class SelectorMateriaDialog extends javax.swing.JDialog {
                     .addComponent(materiasComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(entradaButton1)
+                        .addComponent(cancelarButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(agregarButton)))
                 .addContainerGap())
@@ -142,7 +151,7 @@ public class SelectorMateriaDialog extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(agregarButton)
-                    .addComponent(entradaButton1))
+                    .addComponent(cancelarButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -155,6 +164,7 @@ public class SelectorMateriaDialog extends javax.swing.JDialog {
         
         if (!formValuesDAO.existsMateria(materia)) {
             formValuesDAO.createFormValuesTemplate(materia, semestre);
+            homePanel.setMateriasListUp();
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "La materia seleccionada ya esta registrada");
@@ -162,6 +172,10 @@ public class SelectorMateriaDialog extends javax.swing.JDialog {
         
         
     }//GEN-LAST:event_agregarButtonActionPerformed
+
+    private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
+        dispose();
+    }//GEN-LAST:event_cancelarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,11 +222,15 @@ public class SelectorMateriaDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarButton;
-    private javax.swing.JButton entradaButton1;
+    private javax.swing.JButton cancelarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JComboBox<String> materiasComboBox;
     private javax.swing.JComboBox<String> semestreComboBox;
     // End of variables declaration//GEN-END:variables
+
+    void setHomePanel(HomePanel homePanel) {
+        this.homePanel = homePanel;
+    }
 }

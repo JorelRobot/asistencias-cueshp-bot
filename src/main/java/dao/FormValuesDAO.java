@@ -7,9 +7,11 @@ package dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import model.FormValues;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
@@ -132,8 +134,9 @@ public class FormValuesDAO {
             Document document = dataBase.getDocument();
 
             Element materia = document.createElement("materia");
-            //materia.setIdAttribute("id", true);
+
             materia.setAttribute("id", nombreMateria);
+            //materia.setIdAttribute("id", true);
             materia.setAttribute("semestre", semestreMateria);
 
             Element videoconferencia = document.createElement("videoconferencia");
@@ -185,7 +188,7 @@ public class FormValuesDAO {
             for (int j = 0; j < childNodes.getLength(); j++) {
                 Node childNode = childNodes.item(j);
                 Text text = null;
-                
+
                 switch (childNode.getNodeName()) {
                     case "videoconferencia":
                         text = document.createTextNode(values.getVideoconferencia());
@@ -206,28 +209,59 @@ public class FormValuesDAO {
                         text = document.createTextNode(values.getOtra_actividad());
                         break;
                 }
-                
+
                 childNode.appendChild(text);
             }
             dataBase.commitChanges(document);
         }
     }
-    
+
     public boolean existsMateria(String nombreMateria) {
         if (dataBase.openXMLDBFile()) {
-            Document document = dataBase.getDocument();
-            
-            Element materia = document.getElementById(nombreMateria);
-            
-            if (materia != null){
-                return true;
-            }
+            return getMateriaNodeByID(nombreMateria) != null;
         }
-        
         return false;
     }
     
+    private Node getMateriaNodeByID(String idMateria) {
+        
+        if (dataBase.openXMLDBFile()) {
+            Document document = dataBase.getDocument();
+
+            NodeList materias = document.getElementsByTagName("materia");
+
+            if (materias != null) {
+                
+                for (int i = 0; i < materias.getLength(); i++) {
+                    NamedNodeMap materiaAttributes = materias.item(i).getAttributes();
+                    if (materiaAttributes.getNamedItem("id").getTextContent().equals(idMateria)) {
+                        return materias.item(i);
+                    }
+                }
+            }
+        }
+        
+        return null;
+    }
+
     public void checkXMLDataBase() {
         dataBase.createXMLDBFileIfNotExists();
+    }
+
+    public static void main(String[] args) {
+        Scanner lector = new Scanner(System.in);
+        FormValuesDAO formValuesDAO = new FormValuesDAO();
+        String materia;
+
+        while (true) {
+            System.out.println("Ingresa el nombre de la materia: ");
+            materia = lector.nextLine();
+
+            if (!formValuesDAO.existsMateria(materia)) {
+                System.out.println("LA MATERIA NO EXISTE!!!");
+            } else {
+                System.out.println("LA MATERIA EXISTE!!!");
+            }
+        }
     }
 }

@@ -21,6 +21,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -47,7 +48,8 @@ public class XMLDataBase {
             factory = DocumentBuilderFactory.newDefaultInstance();
             builder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(XMLDataBase.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(XMLDataBase.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Excepcion al crear FACTORY y BUILDER: " + ex.getMessage());
         }
     }
         

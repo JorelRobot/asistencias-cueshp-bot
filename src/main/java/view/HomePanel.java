@@ -6,9 +6,12 @@
 package view;
 
 import dao.FormValuesDAO;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import model.FormValues;
 import xmlutil.XMLDataBase;
 
@@ -35,7 +38,7 @@ public class HomePanel extends javax.swing.JPanel {
         setMateriasListUp();
     }
     
-    private void setMateriasListUp() {
+    public void setMateriasListUp() {
         List<FormValues> formValuesList = formValuesDAO.getAllMaterias();
 
         if (formValuesList != null) {
@@ -443,9 +446,12 @@ public class HomePanel extends javax.swing.JPanel {
 
     private void agregarMateriaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarMateriaButtonActionPerformed
         SelectorMateriaDialog nuevaMateria = new SelectorMateriaDialog(null, true);
-
+        
+        nuevaMateria.setHomePanel(this);
         nuevaMateria.setLocationRelativeTo(null);
         nuevaMateria.setVisible(true);
+        
+        
     }//GEN-LAST:event_agregarMateriaButtonActionPerformed
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
