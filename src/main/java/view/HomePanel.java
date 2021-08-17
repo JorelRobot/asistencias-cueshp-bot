@@ -127,6 +127,8 @@ public class HomePanel extends javax.swing.JPanel {
         entradaButton = new javax.swing.JButton();
         guardarButton = new javax.swing.JButton();
 
+        materiasRegistradasList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        materiasRegistradasList.setToolTipText("");
         materiasRegistradasList.setSelectionBackground(new java.awt.Color(124, 172, 92));
         materiasRegistradasList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {

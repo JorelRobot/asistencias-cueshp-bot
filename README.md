@@ -2,6 +2,9 @@
 Esta aplicaion permitirá llenar los formularios de 
 asistencia de cada sesion de manera automatica.
 
+# Interfaz Grafica
+![Captura de interfaz grafica](Bot_de_asistencias_UI.png)
+
 # Problemas
 |Problema|Algunas posibles soluciones|Solucion temporal|
 |-|-|-|
