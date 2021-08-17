@@ -11,6 +11,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.FormValues;
 import xmlutil.XMLDataBase;
@@ -34,22 +35,40 @@ public class HomePanel extends javax.swing.JPanel {
         setUp();
     }
 
-    private void setUp(){
+    private void setUp() {
         setMateriasListUp();
+
+        recursosButtonGroup.add(educappRadioButton);
+        recursosButtonGroup.add(moodleRadioButton);
+        recursosButtonGroup.add(correoInstRadioButton);
+
+        retroalimentacioButtonGroup.add(meetRadioButton);
+        retroalimentacioButtonGroup.add(recursosMoodleRadioButton);
+        retroalimentacioButtonGroup.add(viaEmailRadioButton);
+
+        evaluacionButtonGroup.add(parcial1RadioButton);
+        evaluacionButtonGroup.add(parcial2RadioButton);
+        evaluacionButtonGroup.add(parcial3RadioButton);
+        evaluacionButtonGroup.add(extrasRadioButton);
     }
-    
+
     public void setMateriasListUp() {
-        List<FormValues> formValuesList = formValuesDAO.getAllMaterias();
 
-        if (formValuesList != null) {
+        try {
+            List<FormValues> formValuesList = formValuesDAO.getAllMaterias();
 
-            DefaultListModel modeloLista = new DefaultListModel();
+            if (formValuesList != null) {
 
-            for (FormValues fv : formValuesList) {
-                modeloLista.addElement(fv);
+                DefaultListModel modeloLista = new DefaultListModel();
+
+                for (FormValues fv : formValuesList) {
+                    modeloLista.addElement(fv.getMateria());
+                }
+
+                materiasRegistradasList.setModel(modeloLista);
             }
-
-            materiasRegistradasList.setModel(modeloLista);
+        } catch (Exception ex) {
+            System.out.println("Excepcion al levantar lista de materias: " + ex.getMessage());
         }
     }
 
@@ -104,6 +123,11 @@ public class HomePanel extends javax.swing.JPanel {
         guardarButton = new javax.swing.JButton();
 
         materiasRegistradasList.setSelectionBackground(new java.awt.Color(124, 172, 92));
+        materiasRegistradasList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                materiaChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(materiasRegistradasList);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -113,6 +137,7 @@ public class HomePanel extends javax.swing.JPanel {
 
         meetLinkField.setBackground(new java.awt.Color(245, 245, 245));
         meetLinkField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        meetLinkField.setForeground(new java.awt.Color(0, 51, 204));
         meetLinkField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 meetLinkFieldActionPerformed(evt);
@@ -379,6 +404,11 @@ public class HomePanel extends javax.swing.JPanel {
         eliminarMateriaButton.setForeground(new java.awt.Color(255, 255, 255));
         eliminarMateriaButton.setText("-");
         eliminarMateriaButton.setBorderPainted(false);
+        eliminarMateriaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarMateriaButtonActionPerformed(evt);
+            }
+        });
 
         salidaButton.setBackground(new java.awt.Color(209, 74, 68));
         salidaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -446,12 +476,10 @@ public class HomePanel extends javax.swing.JPanel {
 
     private void agregarMateriaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarMateriaButtonActionPerformed
         SelectorMateriaDialog nuevaMateria = new SelectorMateriaDialog(null, true);
-        
+
         nuevaMateria.setHomePanel(this);
         nuevaMateria.setLocationRelativeTo(null);
         nuevaMateria.setVisible(true);
-        
-        
     }//GEN-LAST:event_agregarMateriaButtonActionPerformed
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
@@ -461,6 +489,76 @@ public class HomePanel extends javax.swing.JPanel {
     private void meetLinkFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meetLinkFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_meetLinkFieldActionPerformed
+
+    private void materiaChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_materiaChanged
+        String nombreMateria = materiasRegistradasList.getSelectedValue();
+        //JOptionPane.showMessageDialog(null, nombreMateria);
+
+        FormValues fv = formValuesDAO.getFormValuesByNombreMateria(nombreMateria);
+
+        meetLinkField.setText(fv.getVideoconferencia());
+        descripcionActArea.setText(fv.getActividad());
+        otraActDecripcionArea.setText(fv.getOtra_actividad());
+
+        switch (fv.getRecurso()) {
+            case "EDUCAPP":
+                recursosButtonGroup.setSelected(educappRadioButton.getModel(), true);
+                break;
+            case "MOODLE":
+                recursosButtonGroup.setSelected(moodleRadioButton.getModel(), true);
+                break;
+            case "Correo Institucional":
+                recursosButtonGroup.setSelected(correoInstRadioButton.getModel(), true);
+                break;
+        }
+
+        switch (fv.getRetroalimentacion()) {
+            case "Videoconferencia":
+                retroalimentacioButtonGroup.setSelected(meetRadioButton.getModel(), true);
+                break;
+            case "Recursos MOODLE":
+                retroalimentacioButtonGroup.setSelected(recursosMoodleRadioButton.getModel(), true);
+                break;
+            case "Via Correo Institucional":
+                retroalimentacioButtonGroup.setSelected(viaEmailRadioButton.getModel(), true);
+                break;
+        }
+
+        switch (fv.getEvaluacion()) {
+            case "Parcial 1":
+                evaluacionButtonGroup.setSelected(parcial1RadioButton.getModel(), true);
+                break;
+            case "Parcial 2":
+                evaluacionButtonGroup.setSelected(parcial2RadioButton.getModel(), true);
+                break;
+            case "Parcial 3":
+                evaluacionButtonGroup.setSelected(parcial3RadioButton.getModel(), true);
+                break;
+            case "Extraordinario":
+                evaluacionButtonGroup.setSelected(extrasRadioButton.getModel(), true);
+                break;
+        }
+    }//GEN-LAST:event_materiaChanged
+
+    private void eliminarMateriaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarMateriaButtonActionPerformed
+        
+        if (!materiasRegistradasList.isSelectionEmpty()) {
+            int respuesta = JOptionPane.showConfirmDialog(null, "La materia seleccionada será eliminada. ¿Esta seguro de ejecutar esta accion?", 
+                    "Elimirar materia", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            
+            if (respuesta == JOptionPane.YES_OPTION) {
+                String selectedMateria = materiasRegistradasList.getSelectedValue();
+                
+                formValuesDAO.deleteFormValuesByNombre(selectedMateria);
+                setMateriasListUp();
+            } else {
+                System.out.println("CANCELANDO ...");
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Para ejecutar esta accion debe seleccionar una materia primero.");
+        }
+    }//GEN-LAST:event_eliminarMateriaButtonActionPerformed
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Bot de Asistencias TEST");

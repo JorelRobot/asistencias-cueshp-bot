@@ -88,15 +88,17 @@ public class FormValuesDAO {
 
         if (dataBase.openXMLDBFile()) {
             Document document = dataBase.getDocument();
-            Element query = document.getElementById(nombre);
+            
+            Node query = getMateriaNodeByID(nombre);
+            //Element query = document.getElementById(nombre);
 
             if (query != null) {
                 values = new FormValues();
                 NodeList childNodes = query.getChildNodes();
 
                 //values.setMateria(query.getAttribute("nombre"));
-                values.setMateria(query.getAttribute("id"));
-                values.setSemestre(Integer.parseInt(query.getAttribute("semestre")));
+                values.setMateria(query.getAttributes().getNamedItem("id").getTextContent());
+                values.setSemestre(Integer.parseInt(query.getAttributes().getNamedItem("semestre").getTextContent()));
 
                 for (int j = 0; j < childNodes.getLength(); j++) {
                     Node childNode = childNodes.item(j);
@@ -167,11 +169,33 @@ public class FormValuesDAO {
 
         if (dataBase.openXMLDBFile()) {
             Document document = dataBase.getDocument();
+            
+            Node query = null;
+            NodeList materias = document.getElementsByTagName("materia");
 
-            Element query = document.getElementById(nombreMateria);
+            if (materias != null) {
+                
+                for (int i = 0; i < materias.getLength(); i++) {
+                    NamedNodeMap materiaAttributes = materias.item(i).getAttributes();
+                    if (materiaAttributes.getNamedItem("id").getTextContent().equals(nombreMateria)) {
+                        query = materias.item(i);
+                        break;
+                    }
+                }
+            }
+            //Element query = document.getElementById(nombreMateria);
 
             if (query != null) {
-                document.removeChild(query);
+                
+                Node parent = query.getParentNode();
+                NodeList childNodes = query.getChildNodes();
+                
+                while (childNodes.getLength() != 0) {
+                    System.out.println(childNodes.getLength());
+                    query.removeChild(childNodes.item(0));
+                }
+                
+                parent.removeChild(query);
                 dataBase.commitChanges(document);
             }
         }
