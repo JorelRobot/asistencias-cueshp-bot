@@ -88,7 +88,7 @@ public class FormValuesDAO {
 
         if (dataBase.openXMLDBFile()) {
             Document document = dataBase.getDocument();
-            
+
             Node query = getMateriaNodeByID(nombre);
             //Element query = document.getElementById(nombre);
 
@@ -169,12 +169,12 @@ public class FormValuesDAO {
 
         if (dataBase.openXMLDBFile()) {
             Document document = dataBase.getDocument();
-            
+
             Node query = null;
             NodeList materias = document.getElementsByTagName("materia");
 
             if (materias != null) {
-                
+
                 for (int i = 0; i < materias.getLength(); i++) {
                     NamedNodeMap materiaAttributes = materias.item(i).getAttributes();
                     if (materiaAttributes.getNamedItem("id").getTextContent().equals(nombreMateria)) {
@@ -186,15 +186,15 @@ public class FormValuesDAO {
             //Element query = document.getElementById(nombreMateria);
 
             if (query != null) {
-                
+
                 Node parent = query.getParentNode();
                 NodeList childNodes = query.getChildNodes();
-                
+
                 while (childNodes.getLength() != 0) {
                     System.out.println(childNodes.getLength());
                     query.removeChild(childNodes.item(0));
                 }
-                
+
                 parent.removeChild(query);
                 dataBase.commitChanges(document);
             }
@@ -205,38 +205,50 @@ public class FormValuesDAO {
         if (dataBase.openXMLDBFile()) {
             Document document = dataBase.getDocument();
 
-            Element materia = document.getElementById(values.getMateria());
+            Node query = null;
+            NodeList materias = document.getElementsByTagName("materia");
 
-            NodeList childNodes = materia.getChildNodes();
+            if (materias != null) {
 
-            for (int j = 0; j < childNodes.getLength(); j++) {
-                Node childNode = childNodes.item(j);
-                Text text = null;
-
-                switch (childNode.getNodeName()) {
-                    case "videoconferencia":
-                        text = document.createTextNode(values.getVideoconferencia());
+                for (int i = 0; i < materias.getLength(); i++) {
+                    NamedNodeMap materiaAttributes = materias.item(i).getAttributes();
+                    if (materiaAttributes.getNamedItem("id").getTextContent().equals(values.getMateria())) {
+                        query = materias.item(i);
                         break;
-                    case "actividad":
-                        text = document.createTextNode(values.getActividad());
-                        break;
-                    case "recurso":
-                        text = document.createTextNode(values.getRecurso());
-                        break;
-                    case "retroalimentacion":
-                        text = document.createTextNode(values.getRetroalimentacion());
-                        break;
-                    case "evaluacion":
-                        text = document.createTextNode(values.getEvaluacion());
-                        break;
-                    case "otra-actividad":
-                        text = document.createTextNode(values.getOtra_actividad());
-                        break;
+                    }
                 }
-
-                childNode.appendChild(text);
             }
-            dataBase.commitChanges(document);
+            //Element materia = document.getElementById(values.getMateria());
+
+            if (query != null) {
+                NodeList childNodes = query.getChildNodes();
+
+                for (int j = 0; j < childNodes.getLength(); j++) {
+                    Node childNode = childNodes.item(j);
+
+                    switch (childNode.getNodeName()) {
+                        case "videoconferencia":
+                            childNode.setTextContent(values.getVideoconferencia());
+                            break;
+                        case "actividad":
+                            childNode.setTextContent(values.getActividad());
+                            break;
+                        case "recurso":
+                            childNode.setTextContent(values.getRecurso());
+                            break;
+                        case "retroalimentacion":
+                            childNode.setTextContent(values.getRetroalimentacion());
+                            break;
+                        case "evaluacion":
+                            childNode.setTextContent(values.getEvaluacion());
+                            break;
+                        case "otra-actividad":
+                            childNode.setTextContent(values.getOtra_actividad());
+                            break;
+                    }
+                }
+                dataBase.commitChanges(document);
+            }
         }
     }
 
@@ -246,16 +258,16 @@ public class FormValuesDAO {
         }
         return false;
     }
-    
+
     private Node getMateriaNodeByID(String idMateria) {
-        
+
         if (dataBase.openXMLDBFile()) {
             Document document = dataBase.getDocument();
 
             NodeList materias = document.getElementsByTagName("materia");
 
             if (materias != null) {
-                
+
                 for (int i = 0; i < materias.getLength(); i++) {
                     NamedNodeMap materiaAttributes = materias.item(i).getAttributes();
                     if (materiaAttributes.getNamedItem("id").getTextContent().equals(idMateria)) {
@@ -264,7 +276,7 @@ public class FormValuesDAO {
                 }
             }
         }
-        
+
         return null;
     }
 

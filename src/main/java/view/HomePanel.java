@@ -8,11 +8,16 @@ package view;
 import dao.FormValuesDAO;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Enumeration;
 import java.util.List;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import model.FormValues;
 import xmlutil.XMLDataBase;
 
@@ -421,6 +426,11 @@ public class HomePanel extends javax.swing.JPanel {
         entradaButton.setForeground(new java.awt.Color(255, 255, 255));
         entradaButton.setText("Entrada");
         entradaButton.setBorderPainted(false);
+        entradaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entradaButtonActionPerformed(evt);
+            }
+        });
 
         guardarButton.setBackground(new java.awt.Color(255, 238, 170));
         guardarButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -483,7 +493,27 @@ public class HomePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_agregarMateriaButtonActionPerformed
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
-        // TODO add your handling code here:
+        String nombreMateria = materiasRegistradasList.getSelectedValue();
+
+        if (!materiasRegistradasList.isSelectionEmpty()) {
+            FormValues fv = new FormValues();
+
+            fv.setMateria(nombreMateria);
+            fv.setVideoconferencia(meetLinkField.getText());
+            fv.setActividad(descripcionActArea.getText());
+
+            fv.setRecurso(getSelectedItemTextFromButtonGroup(recursosButtonGroup));
+
+            fv.setRetroalimentacion(getSelectedItemTextFromButtonGroup(retroalimentacioButtonGroup));
+
+            fv.setEvaluacion(getSelectedItemTextFromButtonGroup(evaluacionButtonGroup));
+
+            fv.setOtra_actividad(otraActDecripcionArea.getText());
+
+            formValuesDAO.editFormValues(fv);
+        } else {
+            JOptionPane.showMessageDialog(null, "Para ejecutar esta accion debe seleccionar una materia primero.");
+        }
     }//GEN-LAST:event_guardarButtonActionPerformed
 
     private void meetLinkFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meetLinkFieldActionPerformed
@@ -500,6 +530,7 @@ public class HomePanel extends javax.swing.JPanel {
         descripcionActArea.setText(fv.getActividad());
         otraActDecripcionArea.setText(fv.getOtra_actividad());
 
+        recursosButtonGroup.clearSelection();
         switch (fv.getRecurso()) {
             case "EDUCAPP":
                 recursosButtonGroup.setSelected(educappRadioButton.getModel(), true);
@@ -512,6 +543,7 @@ public class HomePanel extends javax.swing.JPanel {
                 break;
         }
 
+        retroalimentacioButtonGroup.clearSelection();
         switch (fv.getRetroalimentacion()) {
             case "Videoconferencia":
                 retroalimentacioButtonGroup.setSelected(meetRadioButton.getModel(), true);
@@ -524,14 +556,15 @@ public class HomePanel extends javax.swing.JPanel {
                 break;
         }
 
+        evaluacionButtonGroup.clearSelection();
         switch (fv.getEvaluacion()) {
-            case "Parcial 1":
+            case "Primer parcial":
                 evaluacionButtonGroup.setSelected(parcial1RadioButton.getModel(), true);
                 break;
-            case "Parcial 2":
+            case "Segundo parcial":
                 evaluacionButtonGroup.setSelected(parcial2RadioButton.getModel(), true);
                 break;
-            case "Parcial 3":
+            case "Tercer parcial":
                 evaluacionButtonGroup.setSelected(parcial3RadioButton.getModel(), true);
                 break;
             case "Extraordinario":
@@ -541,24 +574,28 @@ public class HomePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_materiaChanged
 
     private void eliminarMateriaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarMateriaButtonActionPerformed
-        
+
         if (!materiasRegistradasList.isSelectionEmpty()) {
-            int respuesta = JOptionPane.showConfirmDialog(null, "La materia seleccionada será eliminada. ¿Esta seguro de ejecutar esta accion?", 
+            int respuesta = JOptionPane.showConfirmDialog(null, "La materia seleccionada será eliminada. ¿Esta seguro de ejecutar esta accion?",
                     "Elimirar materia", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-            
+
             if (respuesta == JOptionPane.YES_OPTION) {
                 String selectedMateria = materiasRegistradasList.getSelectedValue();
-                
+
                 formValuesDAO.deleteFormValuesByNombre(selectedMateria);
                 setMateriasListUp();
             } else {
                 System.out.println("CANCELANDO ...");
             }
-            
+
         } else {
             JOptionPane.showMessageDialog(null, "Para ejecutar esta accion debe seleccionar una materia primero.");
         }
     }//GEN-LAST:event_eliminarMateriaButtonActionPerformed
+
+    private void entradaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaButtonActionPerformed
+
+    }//GEN-LAST:event_entradaButtonActionPerformed
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Bot de Asistencias TEST");
@@ -569,6 +606,26 @@ public class HomePanel extends javax.swing.JPanel {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setVisible(true);
+    }
+
+    private String getSelectedItemTextFromButtonGroup(ButtonGroup bg) {
+        Enumeration<AbstractButton> bgElements = bg.getElements();
+        AbstractButton btnSelected = null;
+
+        while (bgElements.hasMoreElements()) {
+            AbstractButton btn = bgElements.nextElement();
+
+            if (btn.isSelected()) {
+                btnSelected = btn;
+                break;
+            }
+        }
+
+        if (btnSelected != null) {
+            return btnSelected.getText();
+        }
+
+        return "";
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
