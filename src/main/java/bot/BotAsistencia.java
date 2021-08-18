@@ -38,69 +38,16 @@ public class BotAsistencia {
         this.values = values;
     }
 
-    public void p0() {
-        clickAndDoubleTab();
-        enter();
-    }
-
-    public void p1() {
-        clickAndDoubleTab();
-        typeText(String.valueOf(values.getSemestre()));
-        doubleTabAndEnter();
-    }
-    
-    public void p2() {
-        clickAndDoubleTab();
-        //typeText(values.getMateria());
-        doubleTabAndEnter();
-    }
-    
-    public void p3() {
-        clickAndDoubleTab();
-        pressDown();
-        doubleTabAndEnter();
-    }
-    
-    public void p4() {
-        clickAndDoubleTab();
-        
-        LocalDateTime dateTime = LocalDateTime.now();
-        
-        robot.delay(50);
-        typeText(String.valueOf(dateTime.getDayOfMonth()));
-        tab();
-        robot.delay(50);
-        typeText(String.valueOf(dateTime.getMonthValue()));
-        tab();
-        robot.delay(50);
-        typeText(String.valueOf(dateTime.getYear()));
-        tab();
-        robot.delay(50);
-        typeText(String.valueOf(dateTime.getHour()));
-        tab();
-        robot.delay(50);
-        typeText(String.valueOf(dateTime.getMinute()));
-        tab();
-        tab();
-        //doubleTabAndEnter();
-    }
-    
-    public void p5() {
-        clickAndDoubleTab();
-        tab();
-        //enter();
-    }
-    
     private void pressUp() {
         robot.keyPress(KeyEvent.VK_UP);
         robot.keyRelease(KeyEvent.VK_UP);
     }
-    
+
     private void pressDown() {
         robot.keyPress(KeyEvent.VK_DOWN);
         robot.keyRelease(KeyEvent.VK_DOWN);
     }
-    
+
     private void doubleTabAndEnter() {
         nTabs(2);
         enter();
@@ -145,11 +92,190 @@ public class BotAsistencia {
         robot.keyRelease(KeyEvent.VK_V);
     }
 
+    private void copyPasteText(String text) {
+        clip(text);
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.keyRelease(KeyEvent.VK_V);
+    }
+
+    public void p0() {
+        clickAndDoubleTab();
+        enter();
+    }
+
+    public void p1() {
+        clickAndDoubleTab();
+        typeText(String.valueOf(values.getSemestre()));
+        doubleTabAndEnter();
+    }
+
+    public void p2() {
+        clickAndDoubleTab();
+        typeText(values.getMateria());
+        doubleTabAndEnter();
+    }
+
+    public void p3() {
+        clickAndDoubleTab();
+        pressDown();
+        doubleTabAndEnter();
+    }
+
+    public void p4() {
+        clickAndDoubleTab();
+
+        LocalDateTime dateTime = LocalDateTime.now();
+
+        robot.delay(50);
+        copyPasteText(String.valueOf(dateTime.getDayOfMonth()));
+        tab();
+        robot.delay(50);
+        copyPasteText(String.valueOf(dateTime.getMonthValue()));
+        tab();
+        robot.delay(50);
+        copyPasteText(String.valueOf(dateTime.getYear()));
+        tab();
+        robot.delay(50);
+        copyPasteText(String.valueOf(dateTime.getHour()));
+        tab();
+        robot.delay(50);
+        copyPasteText(String.valueOf(dateTime.getMinute()));
+        tab();
+        tab();
+        doubleTabAndEnter();
+    }
+
+    public void p5() {
+        clickAndDoubleTab();
+        tab();
+        // TODO: enter();
+    }
+
+    public void p6() {
+        clickAndDoubleTab();
+        pressDown();
+        pressUp();
+        doubleTabAndEnter();
+    }
+
+    public void p7() {
+        clickAndDoubleTab();
+
+        LocalDateTime dateTime = LocalDateTime.now();
+
+        robot.delay(50);
+        copyPasteText(String.valueOf(dateTime.getDayOfMonth()));
+        tab();
+        robot.delay(50);
+        copyPasteText(String.valueOf(dateTime.getMonthValue()));
+        tab();
+        robot.delay(50);
+        copyPasteText(String.valueOf(dateTime.getYear()));
+        tab();
+        robot.delay(50);
+        copyPasteText(String.valueOf(dateTime.getHour()));
+        tab();
+        robot.delay(50);
+        copyPasteText(String.valueOf(dateTime.getMinute()));
+        tab();
+    }
+
+    public void p8() {
+        pressDown();
+        pressDown();
+        pressDown();
+        pressDown();
+
+        copyPasteText(values.getOtra_actividad());
+
+        doubleTabAndEnter();
+    }
+
+    public void p9() {
+        pressDown();
+        pressDown();
+        pressDown();
+
+        nTabs(3);
+        enter();
+    }
+
+    public void p10() {
+        clickAndDoubleTab();
+
+        pressDown();
+        pressUp();
+
+        doubleTabAndEnter();
+    }
+
+    public void p11() {
+        clickAndDoubleTab();
+
+        pressDown();
+
+        doubleTabAndEnter();
+    }
+
+    public void p12() {
+        clickAndDoubleTab();
+
+        pressDown();
+        pressDown();
+
+        doubleTabAndEnter();
+    }
+
+    public void p13() {
+        clickAndDoubleTab();
+
+        pressDown();
+        pressDown();
+        pressDown();
+
+        doubleTabAndEnter();
+    }
+
+    public void p14() {
+        pressDown();
+        pressDown();
+
+        nTabs(3);
+        enter();
+    }
+
+    public void p15() {
+        clickAndDoubleTab();
+
+        pressDown();
+        pressUp();
+
+        doubleTabAndEnter();
+    }
+
+    public void p16() {
+        clickAndDoubleTab();
+
+        pressDown();
+
+        doubleTabAndEnter();
+    }
+
+    public void p17() {
+        clickAndDoubleTab();
+
+        pressDown();
+        pressDown();
+
+        doubleTabAndEnter();
+    }
+
     public static void main(String[] args) {
 
         BotAsistencia bot = new BotAsistencia(new FormValues());
 
-        
         bot.p4();
 
     }
