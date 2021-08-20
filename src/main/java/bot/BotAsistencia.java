@@ -272,6 +272,52 @@ public class BotAsistencia {
         doubleTabAndEnter();
     }
 
+    public void p18() {
+        clickAndDoubleTab();
+
+        copyPasteText(values.getVideoconferencia());
+
+        doubleTabAndEnter();
+    }
+
+    public void p19() {
+        clickAndDoubleTab();
+
+        pressDown();
+        pressUp();
+        
+        tab();
+        doubleTabAndEnter();
+    }
+    
+    public void p20() {
+        clickAndDoubleTab();
+
+        copyPasteText(values.getActividad());
+        
+        tab();
+    }
+    
+    public void p21() {
+        pressDown();
+        pressUp();
+        
+        doubleTabAndEnter();
+    }
+    
+    public void p22() {
+        pressDown();
+        
+        doubleTabAndEnter();
+    }
+
+    public void p23() {
+        pressDown();
+        pressDown();
+        
+        doubleTabAndEnter();
+    }
+    
     public static void main(String[] args) {
 
         BotAsistencia bot = new BotAsistencia(new FormValues());
