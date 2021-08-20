@@ -5,6 +5,7 @@
  */
 package view;
 
+import bot.BotAsistencia;
 import dao.FormValuesDAO;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -422,6 +423,11 @@ public class HomePanel extends javax.swing.JPanel {
         salidaButton.setForeground(new java.awt.Color(255, 255, 255));
         salidaButton.setText("Salida");
         salidaButton.setBorderPainted(false);
+        salidaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salidaButtonActionPerformed(evt);
+            }
+        });
 
         entradaButton.setBackground(new java.awt.Color(124, 172, 92));
         entradaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -598,6 +604,23 @@ public class HomePanel extends javax.swing.JPanel {
     private void entradaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaButtonActionPerformed
 
     }//GEN-LAST:event_entradaButtonActionPerformed
+
+    private void salidaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salidaButtonActionPerformed
+        
+        String selectedMateria = materiasRegistradasList.getSelectedValue();
+        FormValues fv = formValuesDAO.getFormValuesByNombreMateria(selectedMateria);
+        BotAsistencia bot = new BotAsistencia(fv);
+        
+        bot.p0();
+        bot.p1();
+        bot.p2();
+        bot.p3();
+        bot.p4();
+        /*/
+        bot.p5();
+        //*/
+        
+    }//GEN-LAST:event_salidaButtonActionPerformed
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Bot de Asistencias TEST");

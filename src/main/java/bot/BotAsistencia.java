@@ -39,11 +39,13 @@ public class BotAsistencia {
     }
 
     private void pressUp() {
+        robot.delay(100);
         robot.keyPress(KeyEvent.VK_UP);
         robot.keyRelease(KeyEvent.VK_UP);
     }
 
     private void pressDown() {
+        robot.delay(100);
         robot.keyPress(KeyEvent.VK_DOWN);
         robot.keyRelease(KeyEvent.VK_DOWN);
     }
@@ -54,6 +56,7 @@ public class BotAsistencia {
     }
 
     private void clickAndDoubleTab() {
+        robot.delay(1000);
         robot.mouseMove(200, 200);
 
         robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
@@ -63,6 +66,7 @@ public class BotAsistencia {
     }
 
     private void tab() {
+        robot.delay(100);
         robot.keyPress(KeyEvent.VK_TAB);
         robot.keyRelease(KeyEvent.VK_TAB);
     }
@@ -74,6 +78,7 @@ public class BotAsistencia {
     }
 
     private void enter() {
+        robot.delay(100);
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
     }
@@ -83,13 +88,30 @@ public class BotAsistencia {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, stringSelection);
     }
+    
+    private void typeKey(char key){
+        
+        if (Character.isAlphabetic(key)) {
+            key = Character.toUpperCase(key);
+        }
+        
+        robot.delay(100);
+        
+        if (key != ':') {
+            robot.keyPress(key);
+            robot.keyRelease(key);        
+        } else {
+            robot.keyPress(KeyEvent.VK_COLON);
+            robot.keyRelease(KeyEvent.VK_COLON);
+        }
+    }
 
     private void typeText(String text) {
-        clip(text);
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_V);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.keyRelease(KeyEvent.VK_V);
+        char [] chars = text.toCharArray();
+        
+        for (int i = 0; i < chars.length; i++) {
+            typeKey(chars[0]);
+        }
     }
 
     private void copyPasteText(String text) {
@@ -142,8 +164,6 @@ public class BotAsistencia {
         tab();
         robot.delay(50);
         copyPasteText(String.valueOf(dateTime.getMinute()));
-        tab();
-        tab();
         doubleTabAndEnter();
     }
 
