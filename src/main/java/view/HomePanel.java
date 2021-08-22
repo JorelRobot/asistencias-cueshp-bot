@@ -92,12 +92,12 @@ public class HomePanel extends javax.swing.JPanel {
         evaluacionButtonGroup = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         materiasRegistradasList = new javax.swing.JList<>();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        tabbedPane = new javax.swing.JTabbedPane();
+        videoconferenciaPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         meetLinkField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        actividadRecursoPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -106,18 +106,18 @@ public class HomePanel extends javax.swing.JPanel {
         educappRadioButton = new javax.swing.JRadioButton();
         moodleRadioButton = new javax.swing.JRadioButton();
         correoInstRadioButton = new javax.swing.JRadioButton();
-        jPanel3 = new javax.swing.JPanel();
+        retroalimentacionPanel = new javax.swing.JPanel();
         viaEmailRadioButton = new javax.swing.JRadioButton();
         recursosMoodleRadioButton = new javax.swing.JRadioButton();
         meetRadioButton = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        evaluacionPanel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         parcial1RadioButton = new javax.swing.JRadioButton();
         parcial2RadioButton = new javax.swing.JRadioButton();
         parcial3RadioButton = new javax.swing.JRadioButton();
         extrasRadioButton = new javax.swing.JRadioButton();
-        jPanel5 = new javax.swing.JPanel();
+        otraActividadPanel = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -127,6 +127,8 @@ public class HomePanel extends javax.swing.JPanel {
         salidaButton = new javax.swing.JButton();
         entradaButton = new javax.swing.JButton();
         guardarButton = new javax.swing.JButton();
+        velocidadTextField = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
 
         materiasRegistradasList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         materiasRegistradasList.setToolTipText("");
@@ -138,7 +140,7 @@ public class HomePanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(materiasRegistradasList);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        videoconferenciaPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Videoconferencia");
@@ -155,24 +157,24 @@ public class HomePanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Link de la videoconferencia:");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout videoconferenciaPanelLayout = new javax.swing.GroupLayout(videoconferenciaPanel);
+        videoconferenciaPanel.setLayout(videoconferenciaPanelLayout);
+        videoconferenciaPanelLayout.setHorizontalGroup(
+            videoconferenciaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(videoconferenciaPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(videoconferenciaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(meetLinkField)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(videoconferenciaPanelLayout.createSequentialGroup()
+                        .addGroup(videoconferenciaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addGap(0, 403, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        videoconferenciaPanelLayout.setVerticalGroup(
+            videoconferenciaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(videoconferenciaPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -182,9 +184,9 @@ public class HomePanel extends javax.swing.JPanel {
                 .addContainerGap(310, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Videoconferencia", jPanel1);
+        tabbedPane.addTab("Videoconferencia", videoconferenciaPanel);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        actividadRecursoPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Actividad en clase");
@@ -213,16 +215,16 @@ public class HomePanel extends javax.swing.JPanel {
         correoInstRadioButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         correoInstRadioButton.setText("Correo Institucional");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout actividadRecursoPanelLayout = new javax.swing.GroupLayout(actividadRecursoPanel);
+        actividadRecursoPanel.setLayout(actividadRecursoPanelLayout);
+        actividadRecursoPanelLayout.setHorizontalGroup(
+            actividadRecursoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(actividadRecursoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(actividadRecursoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(actividadRecursoPanelLayout.createSequentialGroup()
+                        .addGroup(actividadRecursoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(correoInstRadioButton)
                             .addComponent(moodleRadioButton)
                             .addComponent(educappRadioButton)
@@ -232,9 +234,9 @@ public class HomePanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        actividadRecursoPanelLayout.setVerticalGroup(
+            actividadRecursoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(actividadRecursoPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
@@ -252,9 +254,9 @@ public class HomePanel extends javax.swing.JPanel {
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Actividad en clase", jPanel2);
+        tabbedPane.addTab("Actividad en clase", actividadRecursoPanel);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        retroalimentacionPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         viaEmailRadioButton.setBackground(new java.awt.Color(255, 255, 255));
         viaEmailRadioButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -271,22 +273,22 @@ public class HomePanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("Retroalimentacion");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout retroalimentacionPanelLayout = new javax.swing.GroupLayout(retroalimentacionPanel);
+        retroalimentacionPanel.setLayout(retroalimentacionPanelLayout);
+        retroalimentacionPanelLayout.setHorizontalGroup(
+            retroalimentacionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(retroalimentacionPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(retroalimentacionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(viaEmailRadioButton)
                     .addComponent(recursosMoodleRadioButton)
                     .addComponent(meetRadioButton)
                     .addComponent(jLabel6))
                 .addContainerGap(403, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        retroalimentacionPanelLayout.setVerticalGroup(
+            retroalimentacionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(retroalimentacionPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
@@ -298,9 +300,9 @@ public class HomePanel extends javax.swing.JPanel {
                 .addContainerGap(262, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Retroalimanetacion", jPanel3);
+        tabbedPane.addTab("Retroalimanetacion", retroalimentacionPanel);
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        evaluacionPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel7.setText("Evaluacion");
@@ -321,13 +323,13 @@ public class HomePanel extends javax.swing.JPanel {
         extrasRadioButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         extrasRadioButton.setText("Extraordinario");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout evaluacionPanelLayout = new javax.swing.GroupLayout(evaluacionPanel);
+        evaluacionPanel.setLayout(evaluacionPanelLayout);
+        evaluacionPanelLayout.setHorizontalGroup(
+            evaluacionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(evaluacionPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(evaluacionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(extrasRadioButton)
                     .addComponent(parcial3RadioButton)
                     .addComponent(parcial2RadioButton)
@@ -335,9 +337,9 @@ public class HomePanel extends javax.swing.JPanel {
                     .addComponent(jLabel7))
                 .addContainerGap(481, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        evaluacionPanelLayout.setVerticalGroup(
+            evaluacionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(evaluacionPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
@@ -351,9 +353,9 @@ public class HomePanel extends javax.swing.JPanel {
                 .addContainerGap(221, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Evaluacion", jPanel4);
+        tabbedPane.addTab("Evaluacion", evaluacionPanel);
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        otraActividadPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel8.setText("Otra actividad");
@@ -367,24 +369,24 @@ public class HomePanel extends javax.swing.JPanel {
         otraActDecripcionArea.setRows(5);
         jScrollPane3.setViewportView(otraActDecripcionArea);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout otraActividadPanelLayout = new javax.swing.GroupLayout(otraActividadPanel);
+        otraActividadPanel.setLayout(otraActividadPanelLayout);
+        otraActividadPanelLayout.setHorizontalGroup(
+            otraActividadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, otraActividadPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(otraActividadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(otraActividadPanelLayout.createSequentialGroup()
+                        .addGroup(otraActividadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        otraActividadPanelLayout.setVerticalGroup(
+            otraActividadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(otraActividadPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
@@ -394,7 +396,7 @@ public class HomePanel extends javax.swing.JPanel {
                 .addContainerGap(234, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Otra actividad", jPanel5);
+        tabbedPane.addTab("Otra actividad", otraActividadPanel);
 
         agregarMateriaButton.setBackground(new java.awt.Color(179, 179, 179));
         agregarMateriaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -451,6 +453,10 @@ public class HomePanel extends javax.swing.JPanel {
             }
         });
 
+        velocidadTextField.setText("300");
+
+        jLabel10.setText("Velocidad del Bot");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -465,9 +471,13 @@ public class HomePanel extends javax.swing.JPanel {
                         .addComponent(eliminarMateriaButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1)
+                    .addComponent(tabbedPane)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(guardarButton)
+                        .addGap(119, 119, 119)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(velocidadTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(entradaButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -479,7 +489,7 @@ public class HomePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1)
+                    .addComponent(tabbedPane)
                     .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
@@ -487,7 +497,9 @@ public class HomePanel extends javax.swing.JPanel {
                     .addComponent(entradaButton)
                     .addComponent(guardarButton)
                     .addComponent(eliminarMateriaButton)
-                    .addComponent(agregarMateriaButton))
+                    .addComponent(agregarMateriaButton)
+                    .addComponent(velocidadTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -602,24 +614,102 @@ public class HomePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_eliminarMateriaButtonActionPerformed
 
     private void entradaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaButtonActionPerformed
+        if (!materiasRegistradasList.isSelectionEmpty()) {
+            String selectedMateria = materiasRegistradasList.getSelectedValue();
+            FormValues fv = formValuesDAO.getFormValuesByNombreMateria(selectedMateria);
+            BotAsistencia bot = new BotAsistencia(fv);
+            bot.setDelay(Integer.parseInt(velocidadTextField.getText()));
 
+            bot.p0();
+            bot.p1();
+            bot.p2();
+            bot.p6();
+            bot.p7();
+
+            switch (tabbedPane.getSelectedIndex()) {
+                case 0: // Tab: Videoconferencia
+                    bot.p19();
+                    bot.p18();
+                    break;
+                case 1: // Tab: Actividad en clase
+                    bot.p24();
+                    bot.p20();
+
+                    switch (fv.getRecurso().toLowerCase()) {
+                        case "aducapp":
+                            bot.p21();
+                            break;
+                        case "moodle":
+                            bot.p22();
+                            break;
+                        case "correo institucional":
+                            bot.p23();
+                            break;
+                    }
+                    break;
+                case 2: // Tab: Retroalimentacion
+                    bot.p14();
+
+                    switch (fv.getRetroalimentacion().toLowerCase()) {
+                        case "videconferencia":
+                            bot.p15();
+                            bot.p18();
+                            break;
+                        case "recursos moodle":
+                            bot.p16();
+                            break;
+                        case "via correo":
+                            bot.p17();
+                            break;
+                    }
+                    break;
+                case 3: // Tab: Evaluacion
+                    bot.p9();
+
+                    switch (fv.getEvaluacion().toLowerCase()) {
+                        case "primer parcial":
+                            bot.p10();
+                            break;
+                        case "segundo parcial":
+                            bot.p11();
+                            break;
+                        case "tercer parcial":
+                            bot.p12();
+                            break;
+                        case "extraordinario":
+                            bot.p13();
+                            break;
+                    }
+                    break;
+                case 4: // Tab: Otra Actividad
+                    bot.p8();
+                    break;
+            }
+            bot.p5();
+
+            JOptionPane.showMessageDialog(null, "Proceso Terminado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Para ejecutar esta accion debe seleccionar una materia primero.");
+        }
     }//GEN-LAST:event_entradaButtonActionPerformed
 
     private void salidaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salidaButtonActionPerformed
-        
-        String selectedMateria = materiasRegistradasList.getSelectedValue();
-        FormValues fv = formValuesDAO.getFormValuesByNombreMateria(selectedMateria);
-        BotAsistencia bot = new BotAsistencia(fv);
-        
-        bot.p0();
-        bot.p1();
-        bot.p2();
-        bot.p3();
-        bot.p4();
-        /*/
-        bot.p5();
-        //*/
-        
+
+        if (!materiasRegistradasList.isSelectionEmpty()) {
+            String selectedMateria = materiasRegistradasList.getSelectedValue();
+            FormValues fv = formValuesDAO.getFormValuesByNombreMateria(selectedMateria);
+            BotAsistencia bot = new BotAsistencia(fv);
+            bot.setDelay(Integer.parseInt(velocidadTextField.getText()));
+
+            bot.p0();
+            bot.p1();
+            bot.p2();
+            bot.p3();
+            bot.p4();
+            bot.p5();
+        } else {
+            JOptionPane.showMessageDialog(null, "Para ejecutar esta accion debe seleccionar una materia primero.");
+        }
     }//GEN-LAST:event_salidaButtonActionPerformed
 
     public static void main(String[] args) {
@@ -654,6 +744,7 @@ public class HomePanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel actividadRecursoPanel;
     private javax.swing.JButton agregarMateriaButton;
     private javax.swing.JRadioButton correoInstRadioButton;
     private javax.swing.JTextArea descripcionActArea;
@@ -661,9 +752,11 @@ public class HomePanel extends javax.swing.JPanel {
     private javax.swing.JButton eliminarMateriaButton;
     private javax.swing.JButton entradaButton;
     private javax.swing.ButtonGroup evaluacionButtonGroup;
+    private javax.swing.JPanel evaluacionPanel;
     private javax.swing.JRadioButton extrasRadioButton;
     private javax.swing.JButton guardarButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -672,27 +765,26 @@ public class HomePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JList<String> materiasRegistradasList;
     private javax.swing.JTextField meetLinkField;
     private javax.swing.JRadioButton meetRadioButton;
     private javax.swing.JRadioButton moodleRadioButton;
     private javax.swing.JTextArea otraActDecripcionArea;
+    private javax.swing.JPanel otraActividadPanel;
     private javax.swing.JRadioButton parcial1RadioButton;
     private javax.swing.JRadioButton parcial2RadioButton;
     private javax.swing.JRadioButton parcial3RadioButton;
     private javax.swing.ButtonGroup recursosButtonGroup;
     private javax.swing.JRadioButton recursosMoodleRadioButton;
     private javax.swing.ButtonGroup retroalimentacioButtonGroup;
+    private javax.swing.JPanel retroalimentacionPanel;
     private javax.swing.JButton salidaButton;
+    private javax.swing.JTabbedPane tabbedPane;
+    private javax.swing.JTextField velocidadTextField;
     private javax.swing.JRadioButton viaEmailRadioButton;
+    private javax.swing.JPanel videoconferenciaPanel;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@
 package bot;
 
 import java.awt.AWTException;
+import java.awt.Color;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -13,9 +14,6 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.time.LocalDateTime;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.FormValues;
 
 /**
@@ -25,7 +23,9 @@ import model.FormValues;
 public class BotAsistencia {
 
     private Robot robot;
-    private FormValues values;
+    private final FormValues values;
+    private int DELAY = 300;
+    private final int TYPE_KEY_DEALY = 50;
 
     public BotAsistencia(FormValues values) {
         try {
@@ -37,15 +37,19 @@ public class BotAsistencia {
 
         this.values = values;
     }
+    
+    public void setDelay(int delay) {
+        this.DELAY = delay;
+    }
 
     private void pressUp() {
-        robot.delay(100);
+        robot.delay(DELAY);
         robot.keyPress(KeyEvent.VK_UP);
         robot.keyRelease(KeyEvent.VK_UP);
     }
 
     private void pressDown() {
-        robot.delay(100);
+        robot.delay(DELAY);
         robot.keyPress(KeyEvent.VK_DOWN);
         robot.keyRelease(KeyEvent.VK_DOWN);
     }
@@ -56,7 +60,7 @@ public class BotAsistencia {
     }
 
     private void clickAndDoubleTab() {
-        robot.delay(1000);
+        robot.delay(DELAY);
         robot.mouseMove(200, 200);
 
         robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
@@ -66,7 +70,7 @@ public class BotAsistencia {
     }
 
     private void tab() {
-        robot.delay(100);
+        robot.delay(DELAY);
         robot.keyPress(KeyEvent.VK_TAB);
         robot.keyRelease(KeyEvent.VK_TAB);
     }
@@ -78,7 +82,7 @@ public class BotAsistencia {
     }
 
     private void enter() {
-        robot.delay(100);
+        robot.delay(DELAY);
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
     }
@@ -88,34 +92,36 @@ public class BotAsistencia {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, stringSelection);
     }
-    
-    private void typeKey(char key){
-        
+
+    private void typeKey(char key) {
+
         if (Character.isAlphabetic(key)) {
             key = Character.toUpperCase(key);
         }
-        
-        robot.delay(100);
-        
-        if (key != ':') {
-            robot.keyPress(key);
-            robot.keyRelease(key);        
-        } else {
+
+        robot.delay(TYPE_KEY_DEALY);
+
+        if (key == ':') {
             robot.keyPress(KeyEvent.VK_COLON);
             robot.keyRelease(KeyEvent.VK_COLON);
+        } else {
+            robot.keyPress(key);
+            robot.keyRelease(key);
         }
     }
 
     private void typeText(String text) {
-        char [] chars = text.toCharArray();
-        
+        char[] chars = text.toCharArray();
+
         for (int i = 0; i < chars.length; i++) {
             typeKey(chars[0]);
         }
     }
 
     private void copyPasteText(String text) {
+        robot.delay(DELAY);
         clip(text);
+        robot.delay(DELAY);
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_V);
         robot.keyRelease(KeyEvent.VK_CONTROL);
@@ -135,7 +141,7 @@ public class BotAsistencia {
 
     public void p2() {
         clickAndDoubleTab();
-        typeText(values.getMateria());
+        typeText(values.getMateria().substring(0, 7));
         doubleTabAndEnter();
     }
 
@@ -150,19 +156,14 @@ public class BotAsistencia {
 
         LocalDateTime dateTime = LocalDateTime.now();
 
-        robot.delay(50);
         copyPasteText(String.valueOf(dateTime.getDayOfMonth()));
         tab();
-        robot.delay(50);
         copyPasteText(String.valueOf(dateTime.getMonthValue()));
         tab();
-        robot.delay(50);
         copyPasteText(String.valueOf(dateTime.getYear()));
         tab();
-        robot.delay(50);
         copyPasteText(String.valueOf(dateTime.getHour()));
         tab();
-        robot.delay(50);
         copyPasteText(String.valueOf(dateTime.getMinute()));
         doubleTabAndEnter();
     }
@@ -185,19 +186,14 @@ public class BotAsistencia {
 
         LocalDateTime dateTime = LocalDateTime.now();
 
-        robot.delay(50);
         copyPasteText(String.valueOf(dateTime.getDayOfMonth()));
         tab();
-        robot.delay(50);
         copyPasteText(String.valueOf(dateTime.getMonthValue()));
         tab();
-        robot.delay(50);
         copyPasteText(String.valueOf(dateTime.getYear()));
         tab();
-        robot.delay(50);
         copyPasteText(String.valueOf(dateTime.getHour()));
         tab();
-        robot.delay(50);
         copyPasteText(String.valueOf(dateTime.getMinute()));
         tab();
     }
@@ -218,8 +214,7 @@ public class BotAsistencia {
         pressDown();
         pressDown();
 
-        nTabs(3);
-        enter();
+        doubleTabAndEnter();
     }
 
     public void p10() {
@@ -262,8 +257,7 @@ public class BotAsistencia {
         pressDown();
         pressDown();
 
-        nTabs(3);
-        enter();
+        doubleTabAndEnter();
     }
 
     public void p15() {
@@ -301,48 +295,52 @@ public class BotAsistencia {
     }
 
     public void p19() {
-        clickAndDoubleTab();
-
         pressDown();
         pressUp();
-        
-        tab();
+
         doubleTabAndEnter();
     }
-    
+
+    public void p24() {
+        pressDown();
+
+        doubleTabAndEnter();
+    }
+
     public void p20() {
         clickAndDoubleTab();
 
         copyPasteText(values.getActividad());
-        
+
         tab();
     }
-    
+
     public void p21() {
         pressDown();
         pressUp();
-        
+
         doubleTabAndEnter();
     }
-    
+
     public void p22() {
         pressDown();
-        
+
         doubleTabAndEnter();
     }
 
     public void p23() {
         pressDown();
         pressDown();
-        
+
         doubleTabAndEnter();
     }
-    
+
     public static void main(String[] args) {
 
         BotAsistencia bot = new BotAsistencia(new FormValues());
 
-        bot.p4();
+        bot.p7();
+        bot.p9();
 
     }
 }
