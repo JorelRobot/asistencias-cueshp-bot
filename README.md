@@ -2,8 +2,30 @@
 Esta aplicaion permitirá llenar los formularios de 
 asistencia de cada sesion de manera automatica.
 
+# Indice
+* [Requerimientos](#requerimientos)
+* [Interfaz Grafica](#nterfaz-grafica)
+* [Instrucciones de uso](#instrucciones-de-uso)
+    * [Agregar una materia](#agregar-una-materia)
+    * [Eliminar una materia](#eliminar-una-materia)
+    * [Guardar los datos de una materia](#guardar-los-datos-de-una-materia)
+    * [Como hacer el registro de una entrada](#como-hacer-el-registro-de-una-entrada)
+    * [Como hacer el registro de una salida](#Como-hacer-el-registro-de-una-salida)
+* [Problemas](#problemas)
+
+# Requerimientos
+* Wondows 7/10
+* Java 11
+
 # Interfaz Grafica
 ![Captura de interfaz grafica](Bot_de_asistencias_UI.png)
+
+# Instrucciones de uso
+## Agregar una materia
+## Eliminar una materia
+## Guardar los datos de una materia
+## Como hacer el registro de una entrada
+## Como hacer el registro de una salida
 
 # Problemas
 |Problema|Algunas posibles soluciones|Solucion temporal|

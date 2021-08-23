@@ -43,6 +43,8 @@
                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="velocidadTextField" min="-2" pref="46" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="entradaButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -70,6 +72,7 @@
                   <Component id="agregarMateriaButton" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="velocidadTextField" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel10" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel11" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -703,12 +706,17 @@
     </Component>
     <Component class="javax.swing.JTextField" name="velocidadTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="300"/>
+        <Property name="text" type="java.lang.String" value="500"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="text" type="java.lang.String" value="Velocidad del Bot"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel11">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="(ms)"/>
       </Properties>
     </Component>
   </SubComponents>

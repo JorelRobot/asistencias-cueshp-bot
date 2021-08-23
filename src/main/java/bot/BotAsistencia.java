@@ -37,7 +37,7 @@ public class BotAsistencia {
 
         this.values = values;
     }
-    
+
     public void setDelay(int delay) {
         this.DELAY = delay;
     }
@@ -99,8 +99,9 @@ public class BotAsistencia {
             key = Character.toUpperCase(key);
         }
 
-        robot.delay(TYPE_KEY_DEALY);
+        robot.delay(DELAY);
 
+        /*/
         if (key == ':') {
             robot.keyPress(KeyEvent.VK_COLON);
             robot.keyRelease(KeyEvent.VK_COLON);
@@ -108,13 +109,18 @@ public class BotAsistencia {
             robot.keyPress(key);
             robot.keyRelease(key);
         }
+        //*/
+        //*/
+        robot.keyPress(key);
+        robot.keyRelease(key);
+        //*/
     }
 
     private void typeText(String text) {
         char[] chars = text.toCharArray();
 
         for (int i = 0; i < chars.length; i++) {
-            typeKey(chars[0]);
+            typeKey(chars[i]);
         }
     }
 
@@ -141,7 +147,67 @@ public class BotAsistencia {
 
     public void p2() {
         clickAndDoubleTab();
-        typeText(values.getMateria().substring(0, 7));
+                
+        //*/
+        switch (values.getMateria().toLowerCase()) {
+            case "tae: frances junior":
+                for (int i = 0; i < 12; i++) {
+                    pressDown();
+                }
+                enter();
+                break;
+            case "tae: diagnostico de la problematica ambiental":
+                for (int i = 0; i < 2; i++) {
+                    pressDown();
+                }
+                enter();
+                break;
+            case "tae: principios basicos de la salud publica":
+                for (int i = 0; i < 7; i++) {
+                    pressDown();
+                }
+                enter();
+                break;
+            case "tae: frances inicial":
+                for (int i = 0; i < 9; i++) {
+                    pressDown();
+                }
+                enter();
+                break;
+            case "tae: salud biopsicosocial":
+                for (int i = 0; i < 7; i++) {
+                    pressDown();
+                }
+                enter();
+                break;
+            case "tae: gestion y ejecucion de proyectos de educacion ambiental":
+                for (int i = 0; i < 2; i++) {
+                    pressDown();
+                }
+                enter();
+                break;
+            case "tae: imaginacion digital":
+                for (int i = 0; i < 5; i++) {
+                    pressDown();
+                }
+                enter();
+                break;
+            case "tae: identificacion y prevencion de riesgos para la salud":
+                for (int i = 0; i < 7; i++) {
+                    pressDown();
+                }
+                enter();
+                break;
+            case "tae: gestion del bienestar y cuidado de la salud":
+                for (int i = 0; i < 7; i++) {
+                    pressDown();
+                }
+                enter();
+                break;
+            default:
+                typeText(values.getMateria().substring(0, 5));
+        }
+        //*/
         doubleTabAndEnter();
     }
 

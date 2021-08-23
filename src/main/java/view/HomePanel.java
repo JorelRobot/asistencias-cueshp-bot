@@ -129,6 +129,7 @@ public class HomePanel extends javax.swing.JPanel {
         guardarButton = new javax.swing.JButton();
         velocidadTextField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         materiasRegistradasList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         materiasRegistradasList.setToolTipText("");
@@ -453,9 +454,11 @@ public class HomePanel extends javax.swing.JPanel {
             }
         });
 
-        velocidadTextField.setText("300");
+        velocidadTextField.setText("500");
 
         jLabel10.setText("Velocidad del Bot");
+
+        jLabel11.setText("(ms)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -478,6 +481,8 @@ public class HomePanel extends javax.swing.JPanel {
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(velocidadTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(entradaButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -499,7 +504,8 @@ public class HomePanel extends javax.swing.JPanel {
                     .addComponent(eliminarMateriaButton)
                     .addComponent(agregarMateriaButton)
                     .addComponent(velocidadTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -614,82 +620,89 @@ public class HomePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_eliminarMateriaButtonActionPerformed
 
     private void entradaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaButtonActionPerformed
-        if (!materiasRegistradasList.isSelectionEmpty()) {
-            String selectedMateria = materiasRegistradasList.getSelectedValue();
-            FormValues fv = formValuesDAO.getFormValuesByNombreMateria(selectedMateria);
-            BotAsistencia bot = new BotAsistencia(fv);
-            bot.setDelay(Integer.parseInt(velocidadTextField.getText()));
 
-            bot.p0();
-            bot.p1();
-            bot.p2();
-            bot.p6();
-            bot.p7();
+        if (tabbedPane.getSelectedIndex() != 4) {
+            if (!materiasRegistradasList.isSelectionEmpty()) {
+                String selectedMateria = materiasRegistradasList.getSelectedValue();
+                FormValues fv = formValuesDAO.getFormValuesByNombreMateria(selectedMateria);
+                BotAsistencia bot = new BotAsistencia(fv);
+                bot.setDelay(Integer.parseInt(velocidadTextField.getText()));
 
-            switch (tabbedPane.getSelectedIndex()) {
-                case 0: // Tab: Videoconferencia
-                    bot.p19();
-                    bot.p18();
-                    break;
-                case 1: // Tab: Actividad en clase
-                    bot.p24();
-                    bot.p20();
+                bot.p0();
+                bot.p1();
+                bot.p2();
+                bot.p6();
+                bot.p7();
 
-                    switch (fv.getRecurso().toLowerCase()) {
-                        case "aducapp":
-                            bot.p21();
-                            break;
-                        case "moodle":
-                            bot.p22();
-                            break;
-                        case "correo institucional":
-                            bot.p23();
-                            break;
-                    }
-                    break;
-                case 2: // Tab: Retroalimentacion
-                    bot.p14();
+                switch (tabbedPane.getSelectedIndex()) {
+                    case 0: // Tab: Videoconferencia
+                        bot.p19();
+                        bot.p18();
+                        break;
+                    case 1: // Tab: Actividad en clase
+                        bot.p24();
+                        bot.p20();
 
-                    switch (fv.getRetroalimentacion().toLowerCase()) {
-                        case "videconferencia":
-                            bot.p15();
-                            bot.p18();
-                            break;
-                        case "recursos moodle":
-                            bot.p16();
-                            break;
-                        case "via correo":
-                            bot.p17();
-                            break;
-                    }
-                    break;
-                case 3: // Tab: Evaluacion
-                    bot.p9();
+                        switch (fv.getRecurso().toLowerCase()) {
+                            case "aducapp":
+                                bot.p21();
+                                break;
+                            case "moodle":
+                                bot.p22();
+                                break;
+                            case "correo institucional":
+                                bot.p23();
+                                break;
+                        }
+                        break;
+                    case 2: // Tab: Retroalimentacion
+                        bot.p14();
 
-                    switch (fv.getEvaluacion().toLowerCase()) {
-                        case "primer parcial":
-                            bot.p10();
-                            break;
-                        case "segundo parcial":
-                            bot.p11();
-                            break;
-                        case "tercer parcial":
-                            bot.p12();
-                            break;
-                        case "extraordinario":
-                            bot.p13();
-                            break;
-                    }
-                    break;
+                        switch (fv.getRetroalimentacion().toLowerCase()) {
+                            case "videconferencia":
+                                bot.p15();
+                                bot.p18();
+                                break;
+                            case "recursos moodle":
+                                bot.p16();
+                                break;
+                            case "via correo":
+                                bot.p17();
+                                break;
+                        }
+                        break;
+                    case 3: // Tab: Evaluacion
+                        bot.p9();
+
+                        switch (fv.getEvaluacion().toLowerCase()) {
+                            case "primer parcial":
+                                bot.p10();
+                                break;
+                            case "segundo parcial":
+                                bot.p11();
+                                break;
+                            case "tercer parcial":
+                                bot.p12();
+                                break;
+                            case "extraordinario":
+                                bot.p13();
+                                break;
+                        }
+                        break;
+                    /*
                 case 4: // Tab: Otra Actividad
                     bot.p8();
                     break;
-            }
-            bot.p5();
+                     */
+                }
+                bot.p5();
 
-            JOptionPane.showMessageDialog(null, "Proceso Terminado");
+                JOptionPane.showMessageDialog(null, "Proceso Terminado");
+            } else {
+                JOptionPane.showMessageDialog(null, "Para ejecutar esta accion debe seleccionar una materia primero.");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Para ejecutar esta accion debe seleccionar una materia primero.");
+            JOptionPane.showMessageDialog(null, "Esta opcion ya no existe en el formulario original.");
         }
     }//GEN-LAST:event_entradaButtonActionPerformed
 
@@ -757,6 +770,7 @@ public class HomePanel extends javax.swing.JPanel {
     private javax.swing.JButton guardarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
